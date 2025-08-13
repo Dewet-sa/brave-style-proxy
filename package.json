@@ -1,0 +1,19 @@
+{
+  "name": "brave-style-proxy",
+  "version": "1.0.0",
+  "description": "Ad-blocking proxy for embedding third-party iframes Brave-style",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-puppeteer": "^1.25.0",
+    "cross-fetch": "^4.0.0",
+    "express": "^4.19.2",
+    "lru-cache": "^10.2.0",
+    "puppeteer": "^22.12.1"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
