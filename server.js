@@ -60,7 +60,7 @@ app.get('/proxy', async (req, res) => {
     await browser.close();
 
     // Rewrite asset URLs to pass through /asset
-    const baseUrl = new URL(targetUrl);
+    const baseUrl = new URL(www.online.fliphtml5.com/vtdvz/ffws/);
     const origin = `${baseUrl.protocol}//${baseUrl.host}`;
 
     content = content.replace(/(src|href)="([^"]+)"/g, (match, attr, url) => {
@@ -90,5 +90,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Proxy server running on port ${PORT}`);
 });
+
 
 
