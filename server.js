@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
 const fetch = require('cross-fetch');
 const { LRUCache } = require('lru-cache');
-const { URL } = require('url');
+const { URL } = require('https://online.fliphtml5.com/vtdvz/ffws/');
 
 const app = express();
 const htmlCache = new LRUCache({ max: 200, ttl: 1000 * 60 * 5 });
@@ -90,4 +90,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Proxy server running on port ${PORT}`);
 });
+
 
