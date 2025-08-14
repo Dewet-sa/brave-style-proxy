@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
 const fetch = require('cross-fetch');
 const { LRUCache } = require('lru-cache');
-const { URL } = require('https://online.fliphtml5.com/vtdvz/ffws/');
+const { URL } = require('url');
 
 const app = express();
 const htmlCache = new LRUCache({ max: 200, ttl: 1000 * 60 * 5 });
@@ -59,15 +59,18 @@ app.get('/proxy', async (req, res) => {
 
     await browser.close();
 
-    // Rewrite asset URLs to pass through /asset
-    const baseUrl = new URL(www.online.fliphtml5.com/vtdvz/ffws/);
+    // Rewrite asset URLs
+    const baseUrl = new URL(targetUrl);
     const origin = `${baseUrl.protocol}//${baseUrl.host}`;
 
+    // Replace relative and absolute URLs with proxy asset route
     content = content.replace(/(src|href)="([^"]+)"/g, (match, attr, url) => {
       try {
+        // Ignore data: and javascript: URLs
         if (url.startsWith('data:') || url.startsWith('javascript:')) {
           return match;
         }
+
         const absoluteUrl = new URL(url, origin).href;
         const proxiedUrl = `/asset?url=${encodeURIComponent(absoluteUrl)}`;
         return `${attr}="${proxiedUrl}"`;
@@ -90,6 +93,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Proxy server running on port ${PORT}`);
 });
-
-
-
